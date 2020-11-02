@@ -1,0 +1,45 @@
+cabal-version:       2.2
+
+name:                kujira-bako
+version:             0.1.0.0
+synopsis:            Docker proxy CLI for both Linux and Windows containers
+description:         Docker proxy CLI for both Linux and Windows containers. Control both containers with one command.
+license:             GPL-3.0-only
+license-file:        COPYING
+author:              岡本和樹 (Kazuki Okamoto)
+maintainer:          kazuki.okamoto@kakkun61.com
+copyright:           2020 Kazuki Okamoto
+category:            Tools
+build-type:          Simple
+
+extra-source-files:  CHANGELOG.md
+data-files:          res/etc/default/docker
+
+common common
+  build-depends:       base >=4 && <5
+  ghc-options:         -Wall
+                       -Wcompat
+                       -Wincomplete-uni-patterns
+                       -Wincomplete-record-updates
+                       -Wmonomorphism-restriction
+                       -Wmissing-exported-signatures
+                       -Wmissing-export-lists
+                       -Wmissing-home-modules
+                       -Widentities
+                       -Wredundant-constraints
+                       -Wpartial-fields
+                       -Wno-name-shadowing
+  default-language:    Haskell2010
+
+executable kb
+  import:              common
+  main-is:             main.hs
+  other-modules:       Paths_kujira_bako
+  autogen-modules:     Paths_kujira_bako
+  hs-source-dirs:      app
+  build-depends:       data-default-class,
+                       directory,
+                       filepath,
+                       optparse-declarative >= 0.4.1,
+                       process,
+                       with-utf8
